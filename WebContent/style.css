@@ -1,0 +1,73 @@
+@CHARSET "utf-8";
+#con {
+	position: absolute;
+	width: 200px;
+	height: 100%;
+	right: 0;
+	background-color: black;
+	opacity: 0.9;
+	z-index: 9;
+}
+
+td {
+	
+	padding-right: 40px;
+}
+
+th {
+	padding-right: 40px;
+	padding-bottom: 10px;
+}
+.class {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.min{
+	width:1px;
+}
+
+li {
+	list-style-type: none;
+}
+
+#body {
+	width: 960px;
+	margin: 0 auto;
+}
+#table {
+	width: 100%;
+}
+#table td,th{
+	height: 35px;
+}
+.width{
+	width:15px;
+	display: inline;
+	margin:5px;
+}
+.wrap{
+	text-align: justify;
+	display: inline;
+}
+#stat {
+	margin: 10px;
+	border: 3px Solid Black;
+	border-radius: 10px;
+	float: left;
+	width: 720px;
+	text-align: center;
+	
+}
+#pic{
+	width:150px;
+	
+}
+.bold{
+	font-style: italic;
+	font-weight: bold;
+	color:gold;	
+}

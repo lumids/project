@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties resource="dbconnect.properties"/>
+  <typeAliases>
+  	<typeAlias type="dao.AniInfo" alias="AniInfo"/>
+  	<!-- <typeAlias type="dao.AniOwn" alias="AniOwn"/>  	
+  	<typeAlias type="dao.Board" alias="Board"/>
+  	<typeAlias type="dao.FarmInfo" alias="FarmInfo"/>
+  	<typeAlias type="dao.ItemDetail" alias="ItemDetail"/>
+  	<typeAlias type="dao.ItemInfo" alias="ItemInfo"/>
+  	<typeAlias type="dao.MapInfo" alias="MapInfo"/>
+  	<typeAlias type="dao.MapItemGetInfo" alias="MapItemGetInfo"/>
+  	<typeAlias type="dao.MapItemInfo" alias="MapItemInfo"/>
+  	<typeAlias type="dao.Member" alias="Member"/>
+  	<typeAlias type="dao.Msg" alias="Msg"/>
+  	<typeAlias type="dao.Point" alias="Point"/>
+  	<typeAlias type="dao.ReBoard" alias="ReBoard"/>
+  	<typeAlias type="dao.report" alias="report"/>  	
+  	<typeAlias type="dao.reportGetReason" alias="reportGetReason"/> -->
+  </typeAliases>
+  <environments default="development">
+	<environment id="development">
+	<transactionManager type="JDBC"/>
+	<dataSource type="POOLED">
+		<property name="driver" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+	</dataSource>
+	</environment>
+  </environments>
+  <mappers>
+	<mapper resource="AniInfo.xml"/>
+	<!-- <mapper resource="AniOwn.xml"/>
+	<mapper resource="Board.xml"/>
+	<mapper resource="FarmInfo.xml"/>
+	<mapper resource="ItemDetail.xml"/>
+	<mapper resource="ItemInfo.xml"/>
+	<mapper resource="MapInfo.xml"/>
+	<mapper resource="MapItemGetInfo.xml"/>
+	<mapper resource="MapItemInfo.xml"/>
+	<mapper resource="Member.xml"/>
+	<mapper resource="Msg.xml"/>
+	<mapper resource="Point.xml"/>
+	<mapper resource="ReBoard.xml"/>
+	<mapper resource="report.xml"/>
+	<mapper resource="reportGetReason.xml"/> -->
+  </mappers>
+</configuration>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AniOwn">
+  <resultMap id="AniOwnResult" 	 type="AniOwn">
+    <result property="ownNum" 	 column="ownNum"/>
+    <result property="id"  	 	 column="id"/>
+    <result property="aniNum" 	 column="aniNum"/>
+    <result property="nowStat1"  column="nowStat1"/>
+    <result property="nowStat2"  column="nowStat2"/>
+    <result property="leadChk" 	 column="leadChk"/>
+    <result property="aniOwnChk" column="aniOwnChk"/>
+    <result property="aniNaming" column="aniNaming"/>
+  </resultMap>
+  <select id="selectListBoard" parameterType="Board"  
+  	resultMap="BoardResult">
+    select * from (select rowNum rn, a.* from 
+		(select * from board1	
+	<if test="value!=null">
+		<where>
+			${search} like '%'||#{value}||'%'
+		</where>
+	</if>		
+		 order by ref desc,re_step) a) 
+			where rn between #{startRow} and #{endRow} 
+  </select>
+  <select id="selectTotal" resultType="Integer">
+  	select count(*) from board1
+  	<if test="value!=null">
+		<where>
+			${search} like '%'||#{value}||'%'
+		</where>
+	</if>  	
+  </select> 
+  <select id="selectBoard" resultType="Board">
+  	select * from board1 where num=#{num}
+  </select>
+  <select id="selectNum" resultType="Integer">
+  	select nvl(max(num),0)+1 from board1
+  </select>
+  <insert id="insertBoard" parameterType="Board">
+   	insert into board1 values(#{num},#{writer},#{subject},
+  		#{content},#{email},0,#{passwd},#{ref},#{re_step},
+  		#{re_level},#{ip},sysdate,'n')
+  </insert>
+  <update id="updateStep"  parameterType="hashMap">
+  	update board1 set re_step=re_step+1 
+			 where ref=#{ref} and re_step > #{re_step} 
+  </update> 
+  <update id="updateBoardHit"  parameterType="Integer">
+  	update board1 set readcount = readcount+1 where num=#{num} 
+  </update>
+  <update id="deleteBoard" parameterType="Integer">
+ 		update board1 set del_yn='y' where num=#{num}
+  </update>
+  <update id="updateBoarData"  parameterType="Board">
+  	update board1 set subject=#{subject},writer=#{writer},
+		content=#{content},email=#{email},passwd=#{passwd}
+		 where num=#{num}
+  </update>
+</mapper>

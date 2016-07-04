@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AniInfo">
+  <resultMap id="AniInfoResult" 	 type="AniInfo">
+    <result property="aniNum" 		 column="aniNum"/>
+    <result property="aniName1"  	 column="aniName1"/>
+    <result property="aniName2"  	 column="aniName2"/>
+    <result property="aniPic1"  	 column="aniPic1"/>
+    <result property="aniPic2"  	 column="aniPic2"/>
+    <result property="aniHello1"  	 column="aniHello1"/>
+    <result property="aniHello2"  	 column="aniHello2"/>
+    <result property="aniHello3"  	 column="aniHello3"/>
+    <result property="aniMaxStat1" 	 column="aniMaxStat1"/>
+    <result property="aniMaxStat2" 	 column="aniMaxStat2"/>
+    <result property="aniPrice" 	 column="aniPrice"/>
+    <result property="speChk" 		 column="speChk"/>
+  </resultMap>
+  <select id="selectListAniInfo" parameterType="hashMap"  
+  	resultMap="AniInfoResult">
+    select * from aniInfo
+	<if test="chk!='all'">
+		<where>
+			speChk='n'
+		</where>
+	</if>		
+		 order by aniNum Desc
+  </select>
+  <!-- 
+  <select id="selectTotal" resultType="Integer">
+  	select count(*) from board1
+  	<if test="value!=null">
+		<where>
+			${search} like '%'||#{value}||'%'
+		</where>
+	</if>  	
+  </select> 
+  <select id="selectBoard" resultType="Board">
+  	select * from board1 where num=#{num}
+  </select>
+   -->
+  <select id="selectNum" resultType="Integer">
+  	select nvl(max(aniNum),0)+1 from aniInfo
+  </select>
+  <insert id="insertAniInfo" parameterType="AniInfo">
+   	insert into AniInfo values(#{aniNum},#{aniName1},#{aniName2},
+  		#{aniPic1},#{aniPic2},#{aniHello1},#{aniHello2},#{aniHello3},
+  		#{aniMaxStat1},#{aniMaxStat2},#{aniPrice},#{speChk})
+  </insert>
+  <!-- <update id="updateStep"  parameterType="hashMap">
+  	update board1 set re_step=re_step+1 
+			 where ref=#{ref} and re_step > #{re_step} 
+  </update> 
+  <update id="updateBoardHit"  parameterType="Integer">
+  	update board1 set readcount = readcount+1 where num=#{num} 
+  </update>
+  <update id="deleteBoard" parameterType="Integer">
+ 		update board1 set del_yn='y' where num=#{num}
+  </update>
+  <update id="updateBoarData"  parameterType="Board">
+  	update board1 set subject=#{subject},writer=#{writer},
+		content=#{content},email=#{email},passwd=#{passwd}
+		 where num=#{num}
+  </update> -->
+</mapper>
